@@ -1,0 +1,48 @@
+body {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* don't highlight text */
+::selection {
+  background: transparent;
+}
+::-moz-selection {
+  background: transparent;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td,
+tr {
+  padding: 0;
+  margin: 0;
+  border: solid 3px black;
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 3em;
+  cursor: default;
+}
+
+button {
+  background-color: rgb(42, 185, 42);
+  width: 7em;
+  height: 3em;
+  font-size: 3em;
+  border-radius: 45px;
+  border: none;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(36, 148, 36);
+  cursor: pointer;
+}
