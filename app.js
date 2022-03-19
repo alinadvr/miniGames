@@ -1,9 +1,13 @@
-const trs = document.querySelectorAll('tr')
+const gameResult = document.querySelector('.result')
+const table = document.querySelector('table')
+const tds = document.querySelectorAll('td')
 const btnReset = document.querySelector('button')
+const win = document.querySelector('p')
 
 //x - true, o - false
 let sign = true
 let grid = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+let fillCell = 0
 
 btnReset.addEventListener('click', function() {
     window.location.reload()
@@ -11,21 +15,24 @@ btnReset.addEventListener('click', function() {
 
 function setSign(indexTr, indexTd, object) {
     let user = ''
+    let result = ''
     if (!isNaN(grid[indexTr][indexTd])) {
         if (sign) user = 'X'
         else user = 'O'
         grid[indexTr][indexTd] = user
         object.innerHTML = user
+        fillCell++
         sign = !sign
     }
-    if (checkWin()) alert(`${user} won!`)
+    if (checkWin()) {
+        result = `${user} win!`
+        tds.forEach(td => {
+            td.onclick = null
+        })
+    } else if (fillCell === 9) result = 'Draw'
+    win.innerHTML = result
+    gameResult.appendChild(win)
 }
-
-trs.forEach(tr => {
-    for (let td of tr.children) {
-        td.addEventListener('click', setSign)
-    }
-})
 
 function checkWin() {
     if (grid[0][0] === grid[0][1] && grid[0][1] === grid[0][2]) return true
